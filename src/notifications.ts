@@ -6,6 +6,7 @@ function createNotificationStore(timeout: number) {
 	const _notifications = writable([])
 
 	function send(message: string, type = 'default', timeout: number) {
+		// @ts-ignore
 		_notifications.update((state) => {
 			return [...state, { id: id(), type, message, timeout }]
 		})
@@ -20,7 +21,7 @@ function createNotificationStore(timeout: number) {
 				_notifications.update((state) => {
 					state.shift()
 					return state
-				})
+				}) // @ts-ignore
 			}, $_notifications[0].timeout)
 			return () => {
 				clearTimeout(timer)
@@ -43,5 +44,5 @@ function createNotificationStore(timeout: number) {
 function id() {
 	return '_' + Math.random().toString(36).substr(2, 9)
 }
-
+// @ts-ignore
 export const notifications = createNotificationStore()

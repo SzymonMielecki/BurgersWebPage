@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { flip } from 'svelte/animate'
 	import { fly } from 'svelte/transition'
 	import { notifications } from '../notifications.js'

@@ -1,4 +1,5 @@
 <script>
+	import { cart } from '../stores'
 	export let burgerName = ''
 	export let kcal = 0
 	export let protein = 0
@@ -20,6 +21,18 @@
 			count -= 1
 		}
 	}
+
+	// function handleAddToCart() {
+	// 	notifications.warning(`Added ${count} ${burgerName}s (${count * price}$) to cart!`, 4000)
+	// 	for (let item of $cart) {
+	// 		if (item.id === product.id) {
+	// 			product.quantity += 1
+	// 			$cart = $cart
+	// 			return
+	// 		}
+	// 	}
+	// 	$cart = [...$cart, product]
+	// }
 	import { notifications } from '../notifications'
 </script>
 
@@ -74,11 +87,7 @@
 				</p>
 				<button
 					class="place-center left-0 bottom-0 flex w-full justify-center rounded-xl border bg-skin-selection fill-skin-backgroundDimmed p-1 text-sm text-skin-backgroundDimmed hover:border-skin-selection hover:bg-skin-background hover:fill-skin-selectionDimmed hover:text-skin-selectionDimmed"
-					on:click={() =>
-						notifications.warning(
-							`Added ${count} ${burgerName}s (${count * price}$) to cart!`,
-							4000
-						)}
+					on:click={handleAddToCart}
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
 						<path
