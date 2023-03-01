@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--accent-color: #f46d48;
+		--accent-color-hover: #ff815e;
+		--accent-color-dimmed: #ffe3d8;
+		--accent-color-dimmed-hover: #fff1ec;
+		--selection-color: #46cf71;
+		--selection-color-hover: #53bf75;
+		--selection-color-dimmed: #598567;
+		--background-color: #ffffff;
+		--background-color-dimmed: #f6f6f6;
+		--background-color-dimmed2: #e7e7e7;
+		--text-color: #000000;
+		--text-color-dimmed: #404040;
+	}
+}
