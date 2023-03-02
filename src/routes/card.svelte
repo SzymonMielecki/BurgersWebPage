@@ -1,5 +1,7 @@
-<script>
-	import { cart } from '../stores'
+<script lang="ts">
+	import { fade } from 'svelte/transition'
+	import { cart } from '../products'
+	import { notifications } from '../notifications'
 	export let burgerName = ''
 	export let kcal = 0
 	export let protein = 0
@@ -12,31 +14,31 @@
 	export let nutrients = ''
 	export let background = ''
 	export let span = ''
-	export let count = 1
+	export let quantity = 1
+	export let id = 0
 	function incrementOnClick() {
-		count += 1
+		quantity += 1
 	}
 	function decrementOnClick() {
-		if (count > 1) {
-			count -= 1
+		if (quantity > 1) {
+			quantity -= 1
 		}
 	}
-
-	// function handleAddToCart() {
-	// 	notifications.warning(`Added ${count} ${burgerName}s (${count * price}$) to cart!`, 4000)
-	// 	for (let item of $cart) {
-	// 		if (item.id === product.id) {
-	// 			product.quantity += 1
-	// 			$cart = $cart
-	// 			return
-	// 		}
-	// 	}
-	// 	$cart = [...$cart, product]
-	// }
-	import { notifications } from '../notifications'
+	const handleAddToCart = (product) => {
+		notifications.warning(`Added ${quantity} ${burgerName}s (${quantity * price}$) to cart!`, 4000)
+		console.log(product)
+		for (let item of $cart) {
+			if (item.id === product.id) {
+				item.quantity += product.quantity
+				$cart = $cart
+				return
+			}
+		}
+		$cart = [...$cart, product]
+	}
 </script>
 
-<div class="flex gap-1 {span}">
+<div class="flex gap-1 {span} order-{id + 1}" in:fade={{ duration: 500 }}>
 	<div
 		class="relative flex h-full w-full transform cursor-pointer justify-center rounded-xl transition duration-500 hover:scale-105"
 	>
@@ -45,16 +47,16 @@
 		>
 			{kcal} Kcal
 		</div>
-		<div class="absolute top-0 left-0 z-20 mt-5 h-2 bg-skin-selection px-2 " />
-		<div class="absolute top-0 left-0 z-0 mt-6 h-2 rounded-3xl bg-skin-selection pl-5 " />
 		<div class="z-10 w-full rounded-xl {background} flex flex-col justify-center pb-2 shadow-xl">
-			<div class="relative flex">
-				<img {src} class="m-auto w-full object-cover" alt={burgerName} />
+			<div class="relative mx-auto flex">
+				<button on:click>
+					<img {src} class="m-auto w-full object-cover" alt={burgerName} />
+				</button>
 				<div
 					class="absolute bottom-0 right-0 mb-2 mr-2 rounded-lg bg-skin-accent px-2 text-xs font-medium text-skin-backgroundDimmed hover:bg-skin-accentHover"
 				>
 					<button on:click={decrementOnClick}> - </button>
-					{count}
+					{quantity}
 					<button on:click={incrementOnClick}> + </button>
 				</div>
 			</div>
@@ -87,7 +89,14 @@
 				</p>
 				<button
 					class="place-center left-0 bottom-0 flex w-full justify-center rounded-xl border bg-skin-selection fill-skin-backgroundDimmed p-1 text-sm text-skin-backgroundDimmed hover:border-skin-selection hover:bg-skin-background hover:fill-skin-selectionDimmed hover:text-skin-selectionDimmed"
-					on:click={handleAddToCart}
+					on:click={() =>
+						handleAddToCart({
+							id,
+							burgerName,
+							price,
+							src,
+							quantity
+						})}
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
 						<path
