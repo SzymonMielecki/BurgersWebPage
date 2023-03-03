@@ -31,7 +31,7 @@
 	}
 </script>
 
-<nav id="header" class="h-13 sticky top-0 z-30 w-full border-b bg-skin-background py-1">
+<nav id="header" class=" sticky top-0 z-30 w-full border-b bg-skin-background py-1">
 	<div class="mt-0 flex w-full items-center justify-between px-6 py-2">
 		<label for="menu-toggle" class="flex cursor-pointer justify-center gap-3 md:hidden">
 			<div class="flex">

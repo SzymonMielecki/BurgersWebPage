@@ -34,11 +34,11 @@
 				return
 			}
 		}
-		$cart = [...$cart, product]
+		$cart.push(product)
 	}
 </script>
 
-<div class="flex gap-1 {span} order-{id + 1}" in:fade={{ duration: 500 }}>
+<div class="flex gap-1 {span} order-{id + 1} box-border" in:fade={{ duration: 200 }}>
 	<div
 		class="relative flex h-full w-full transform cursor-pointer justify-center rounded-xl transition duration-500 hover:scale-105"
 	>

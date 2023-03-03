@@ -3,7 +3,6 @@
 	import Sidebar from './sidebar.svelte'
 	import Navbar from './navbar.svelte'
 	import Toast from './Toast.svelte'
-
 </script>
 
 <main class="flex min-h-screen flex-row font-sans">

@@ -1,6 +1,7 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition'
 	import { notifications } from '../../notifications'
-	import { cart, products } from '../../products'
+	import { cart } from '../../products'
 	import { afterUpdate } from 'svelte'
 	let subtotal = 0
 	let total = 0
@@ -37,11 +38,10 @@
 			}
 		}
 	}
-
 </script>
 
-<div class=" flex items-center justify-center">
-	<div class="flex max-w-md flex-col space-y-4 divide-y divide-gray-700 p-6 sm:w-96 sm:p-10">
+<div class=" flex items-center justify-center" in:fade={{ duration: 200 }}>
+	<div class="flex max-w-md flex-col space-y-4 divide-y divide-skin-textDimmed p-6 sm:w-96 sm:p-10">
 		<h2 class="text-2xl font-semibold">Order items</h2>
 		<ul class="flex flex-col space-y-2 pt-4">
 			{#if $cart.length === 0}
@@ -51,7 +51,7 @@
 			{:else}
 				{#each $cart as item}
 					<li class="flex items-start justify-between">
-						<img src="{item.src}" alt="{item.burgerName}" class="h-8">
+						<img src={item.src} alt={item.burgerName} class="h-8" />
 						<h3>
 							{item.burgerName}
 							<span class="text-sm text-skin-accent">x{item.quantity}</span>
@@ -84,7 +84,7 @@
 							d="M148,96a52,52,0,1,0,52,52A52.059,52.059,0,0,0,148,96Zm0,72a20,20,0,1,1,20-20A20.023,20.023,0,0,1,148,168Z"
 						/>
 					</svg>
-					<span class="dark:text-gray-400">Spend 50.00$, get 20% off</span>
+					<span class="text-skin-textDimmed">Spend 50.00$, get 20% off</span>
 				</div>
 			</div>
 		</div>
@@ -110,12 +110,21 @@
 				<span>Total</span>
 				<span class="font-semibold">{total}$</span>
 			</div>
-			<button
-				type="button"
-				on:click={() => notifications.warning('Still under construction 🚧 🔨 👷‍♂️', 4000)}
-				class="w-full rounded border border-skin-accent bg-skin-accent py-2 font-semibold dark:text-gray-900"
-				>Go to checkout</button
-			>
+			{#if $cart.length === 0}
+				<button
+					type="button"
+					disabled
+					class="w-full rounded border border-skin-backgroundDimmed2 bg-skin-backgroundDimmed2 py-2 font-semibold text-skin-textDimmed transition duration-500 hover:scale-105"
+					>Add something to cart!</button
+				>
+			{:else}
+				<button
+					type="button"
+					on:click={() => notifications.warning('Still under construction 🚧 🔨 👷‍♂️', 4000)}
+					class="w-full rounded border border-skin-accent bg-skin-accent  py-2 font-semibold text-skin-backgroundDimmed transition duration-500 hover:scale-105"
+					>Go to checkout</button
+				>
+			{/if}
 		</div>
 	</div>
 </div>

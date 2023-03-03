@@ -66,6 +66,22 @@ module.exports = {
 					text: 'var(--text-color)',
 					textDimmed: 'var(--text-color-dimmed)'
 				}
+			},
+			divide : {
+				skin: {
+					accent: 'var(--accent-color)',
+					accentHover: 'var(--accent-color-hover)',
+					accentDimmed: 'var(--accent-color-dimmed)',
+					accentDimmedHover: 'var(--accent-color-dimmed-hover)',
+					selection: 'var(--selection-color)',
+					selectionHover: 'var(--selection-color-hover)',
+					selectionDimmed: 'var(--selection-color-dimmed)',
+					background: 'var(--background-color)',
+					backgroundDimmed: 'var(--background-color-dimmed)',
+					backgroundDimmed2: 'var(--background-color-dimmed2)',
+					text: 'var(--text-color)',
+					textDimmed: 'var(--text-color-dimmed)'
+				}
 			}
 		}
 	},
