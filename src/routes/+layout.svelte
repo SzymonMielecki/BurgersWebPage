@@ -5,11 +5,11 @@
 	import Toast from './Toast.svelte'
 </script>
 
-<main class="flex min-h-screen flex-row font-sans">
+<main class="flex min-h-screen flex-row font-sans md:overflow-hidden">
 	<aside>
 		<Sidebar />
 	</aside>
-	<aside class="relative box-border flex h-full w-full flex-col">
+	<aside class="relative box-border flex h-screen w-full flex-col">
 		<Navbar />
 		<slot />
 	</aside>

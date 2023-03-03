@@ -22,7 +22,7 @@
 </script>
 
 <div
-	class="box-border grid md:h-[calc(100vh-60px)] w-full grid-cols-2 grid-rows-4 gap-6 py-5 px-4 md:grid-cols-4 md:grid-rows-2"
+	class="box-border grid w-full grid-cols-2 grid-rows-4 gap-6 py-5 px-4 md:h-[calc(100vh-60px)] md:grid-cols-4 md:grid-rows-2"
 >
 	{#each $products as product, id}
 		{#if product.id === bigId}

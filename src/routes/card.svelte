@@ -38,19 +38,21 @@
 	}
 </script>
 
-<div class="flex gap-1 {span} order-{id + 1} box-border" in:fade={{ duration: 200 }}>
+<div class="flex gap-1 {span}" in:fade={{ duration: 200 }}>
 	<div
-		class="relative flex h-full w-full transform cursor-pointer justify-center rounded-xl transition duration-500 hover:scale-105"
+		class="relative flex h-full w-full transform cursor-pointer justify-center rounded-xl transition duration-500 hover:scale-105 "
 	>
 		<div
 			class="absolute top-0 left-0 z-30 mt-3 rounded-lg bg-skin-selection px-2 text-xs font-medium text-skin-backgroundDimmed"
 		>
 			{kcal} Kcal
 		</div>
-		<div class="z-10 w-full rounded-xl {background} flex flex-col justify-center pb-2 shadow-xl">
+		<div
+			class="z-10 w-full rounded-xl {background} box-border flex flex-col justify-center pb-2 shadow-xl"
+		>
 			<div class="relative mx-auto flex">
 				<button on:click>
-					<img {src} class="m-auto w-full object-cover" alt={burgerName} />
+					<img {src} class="m-auto object-cover px-9" alt={burgerName} />
 				</button>
 				<div
 					class="absolute bottom-0 right-0 mb-2 mr-2 rounded-lg bg-skin-accent px-2 text-xs font-medium text-skin-backgroundDimmed hover:bg-skin-accentHover"
@@ -84,7 +86,7 @@
 						{salt} g of salt
 					</div>
 				</div>
-				<p class="pb-1 text-xs text-skin-textDimmed">
+				<p class="pb-1 text-xs text-skin-textDimmed {nutrients}">
 					{description}
 				</p>
 				<button
@@ -98,12 +100,11 @@
 							quantity
 						})}
 				>
-					<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
-						<path
-							d="M14.35 43.95q-1.5 0-2.55-1.05-1.05-1.05-1.05-2.55 0-1.5 1.05-2.55 1.05-1.05 2.55-1.05 1.5 0 2.55 1.05 1.05 1.05 1.05 2.55 0 1.5-1.05 2.55-1.05 1.05-2.55 1.05Zm20 0q-1.5 0-2.55-1.05-1.05-1.05-1.05-2.55 0-1.5 1.05-2.55 1.05-1.05 2.55-1.05 1.5 0 2.55 1.05 1.05 1.05 1.05 2.55 0 1.5-1.05 2.55-1.05 1.05-2.55 1.05Zm-22.6-33 5.5 11.4h14.4l6.25-11.4Zm-1.5-3H39.7q1.15 0 1.75 1.05.6 1.05 0 2.1L34.7 23.25q-.55.95-1.425 1.525t-1.925.575H16.2l-2.8 5.2h24.55v3h-24.1q-2.1 0-3.025-1.4-.925-1.4.025-3.15l3.2-5.9L6.45 7h-3.9V4H8.4Zm7 14.4h14.4Z"
-							class=""
-						/>
-					</svg>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 96 960 960" class="my-auto h-7 w-7"
+						><path
+							d="M465 443V320H341v-60h124V137h60v123h123v60H525v123h-60ZM289.788 976Q260 976 239 954.788q-21-21.213-21-51Q218 874 239.212 853q21.213-21 51-21Q320 832 341 853.212q21 21.213 21 51Q362 934 340.788 955q-21.213 21-51 21Zm404 0Q664 976 643 954.788q-21-21.213-21-51Q622 874 643.212 853q21.213-21 51-21Q724 832 745 853.212q21 21.213 21 51Q766 934 744.788 955q-21.213 21-51 21ZM290 769q-42 0-61.5-34t.5-69l61-111-150-319H62v-60h116l170 364h292l156-280 52 28-153 277q-9.362 16.667-24.681 25.833Q655 600 634 600H334l-62 109h494v60H290Z"
+						/></svg
+					>
 					<span class="flex-wrap self-center">
 						<div>Add to Cart</div>
 						<div>{price}$</div>
