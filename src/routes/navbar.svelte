@@ -1,6 +1,5 @@
-<script lang="ts">
+<script>
 	import { notifications } from '../notifications'
-	import { onMount } from 'svelte'
 	let user = { loggedIn: false }
 	let username = ''
 	function handleLogin() {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { notifications } from '../../notifications'
-	import { cart } from '../../products'
+	import { cart, products } from '../../products'
 	import { afterUpdate } from 'svelte'
 	let subtotal = 0
 	let total = 0
@@ -8,15 +8,9 @@
 	let itemWorth = 0
 	let itemName = ''
 	afterUpdate(() => {
-		// TODO fix it up
-		for (let item of $cart) {
-			itemWorth = item.price * item.quantity
-			itemName = item.name
-			subtotalObj.itemName = itemWorth
-			subtotal = Object.values(subtotalObj).reduce((a, b) => a + b, 0)
-		}
+		subtotal = $cart.reduce((a, b) => a + b.price * b.quantity, 0)
 		if (subtotal > 50) {
-			total = subtotal * 0.8 + 5
+			total = (subtotal * 0.8 + 5).toFixed(2)
 		} else {
 			total = subtotal + 5
 		}
@@ -43,25 +37,33 @@
 			}
 		}
 	}
+
 </script>
 
 <div class=" flex items-center justify-center">
 	<div class="flex max-w-md flex-col space-y-4 divide-y divide-gray-700 p-6 sm:w-96 sm:p-10">
 		<h2 class="text-2xl font-semibold">Order items</h2>
 		<ul class="flex flex-col space-y-2 pt-4">
-			{#each $cart as item}
+			{#if $cart.length === 0}
 				<li class="flex items-start justify-between">
-					<h3>
-						{item.burgerName}
-						<span class="text-sm text-skin-accent">x{item.quantity}</span>
-					</h3>
-					<button on:click={() => minusItem(item)}>-</button>
-					<button on:click={() => plusItem(item)}>+</button>
-					<div class="text-right">
-						<span class="block">{item.price * item.quantity}$</span>
-					</div>
+					<h3>Cart is empty</h3>
 				</li>
-			{/each}
+			{:else}
+				{#each $cart as item}
+					<li class="flex items-start justify-between">
+						<img src="{item.src}" alt="{item.burgerName}" class="h-8">
+						<h3>
+							{item.burgerName}
+							<span class="text-sm text-skin-accent">x{item.quantity}</span>
+						</h3>
+						<button on:click={() => minusItem(item)}>-</button>
+						<button on:click={() => plusItem(item)}>+</button>
+						<div class="text-right">
+							<span class="block">{item.price * item.quantity}$</span>
+						</div>
+					</li>
+				{/each}
+			{/if}
 		</ul>
 		<div class="space-y-2 pt-4">
 			<div>
